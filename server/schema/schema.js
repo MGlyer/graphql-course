@@ -5,9 +5,12 @@ const {GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLID, GraphQLInt} =
 
 //dummy data
 var books = [
-  {name: 'Name of the Wind', genre: 'Fantasy', id: '1'},
-  {name: 'The Final Empire', genre: 'Fantasy', id: '2'},
-  {name: 'The Long Earth', genre: 'Sci-fi', id: '3'}
+  {name: 'Name of the Wind', genre: 'Fantasy', id: '1', authorID: '1'},
+  {name: 'The Final Empire', genre: 'Fantasy', id: '2', authorID: '2'},
+  {name: 'The Long Earth', genre: 'Sci-fi', id: '3', authorID: '3'},
+  {name: 'The Hero of Ages', genre: 'Fantasy', id: '4', authorID: '2'},
+  {name: 'The Colour of Magic', genre: 'Fantasy', id: '5', authorID: '3'},
+  {name: 'The Light Fantastic', genre: 'Fantasy', id: '6', authorID: '3'}
 ]
 
 var authors = [
@@ -21,7 +24,14 @@ const BookType = new GraphQLObjectType({
     fields: () => ({
         id: {type: GraphQLID},
         name: {type: GraphQLString},
-        genre: {type: GraphQLString}
+        genre: {type: GraphQLString},
+        author: {
+          type: AuthorType,
+          resolve (parent, args) {
+            console.log(parent)
+            return _.find(authors, {id: parent.authorID})
+          }
+        }
     })
 })
 
