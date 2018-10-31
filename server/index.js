@@ -4,6 +4,7 @@ const graphqlHTTP = require('express-graphql')
 const schema = require('./schema/schema')
 const mongoose = require('mongoose')
 
+
 mongoose.connect('mongodb://guest:p4ssword@ds147073.mlab.com:47073/graphql-course')
 let db = mongoose.connection
 
