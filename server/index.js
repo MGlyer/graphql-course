@@ -16,4 +16,8 @@ server.use('/graphql', graphqlHTTP({
     graphiql: true
 }))
 
+module.exports = {
+    db
+}
+
 server.listen(8084, () => console.log('now listening on port 8084'))

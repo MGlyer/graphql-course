@@ -4,21 +4,6 @@ const _ = require('lodash')
 const {GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLID, GraphQLInt, GraphQLList} = graphql
 const { Book, Author } = require('../models/models.js')
 
-//dummy data
-var books = [
-  {name: 'Name of the Wind', genre: 'Fantasy', id: '1', authorID: '1'},
-  {name: 'The Final Empire', genre: 'Fantasy', id: '2', authorID: '2'},
-  {name: 'The Long Earth', genre: 'Sci-fi', id: '3', authorID: '3'},
-  {name: 'The Hero of Ages', genre: 'Fantasy', id: '4', authorID: '2'},
-  {name: 'The Colour of Magic', genre: 'Fantasy', id: '5', authorID: '3'},
-  {name: 'The Light Fantastic', genre: 'Fantasy', id: '6', authorID: '3'}
-]
-
-var authors = [
-  {name: 'Patrick rothfuss', age: 44, id: '1'},
-  {name: 'Brandon Sanderson', age: 42, id: '2'},
-  {name: 'Terry Pratchett', age: 66, id: '3'}
-]
 
 const BookType = new GraphQLObjectType({
     name: 'Book',
@@ -94,7 +79,7 @@ const Mutation = new GraphQLObjectType({
         age: {type: GraphQLInt}
       },
       resolve(parent, args) {
-        new Author({
+        return new Author({
           name: args.name,
           age: args.age
         }).save()
@@ -105,13 +90,19 @@ const Mutation = new GraphQLObjectType({
       args: {
         name: {type: GraphQLString},
         genre: {type: GraphQLString},
-        authorID: {type: GraphQLString}
+        authorName: {type: GraphQLID}
       },
       resolve(parent, args) {
-        new Book ({
-          name: args.name,
-          genre: args.genre
-          //something about the authorID....
+        Author.findOne({name: args.authorName}, (err, docs) => {
+          if (err) console.log(err)
+          else {
+            let book = new Book ({
+              name: args.name,
+              genre: args.genre, 
+              authorID: docs._id
+            })
+            return book.save()
+          }
         })
       }
     }
