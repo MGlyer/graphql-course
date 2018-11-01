@@ -4,21 +4,21 @@ import { graphql } from 'react-apollo'
 
 class BookList extends React.Component {
   state = {
-    books: this.props.data.books || []
+    books: []
   }
-
+  
   render() {
     return ( 
     <div>
       <ul id = 'book-list' >
-        <li>Book name</li>
-        {this.props.data.books ? 
+        {this.props.data.loading ? 
+        <div>Loading...</div>
+        : 
         this.props.data.books.map((book) => {
           return (
-            <li>{book.name}</li>
+            <li key = {book.id}>{book.name}</li>
           )
-        })
-        : null}
+        })}
       </ul> 
     </div>
     )
