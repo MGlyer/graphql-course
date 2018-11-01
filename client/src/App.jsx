@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import BookList from './components/BookList.jsx'
 
 class App extends React.Component {
     state = {
@@ -9,7 +10,10 @@ class App extends React.Component {
     render() {
         return(
             <div>
-                <p>I'm on the page!</p>
+                <h1 className="title">GraphQL Course: Reading List</h1>
+                <div className="bookList">
+                  <BookList />
+                </div>
             </div>
         )
     }
