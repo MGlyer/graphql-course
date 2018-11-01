@@ -10,6 +10,7 @@ class AddBook extends React.Component {
   }
   changeAuthor = this.changeAuthor.bind(this)
   handleTextChange = this.handleTextChange.bind(this)
+  handleSubmit = this.handleSubmit.bind(this)
 
   changeAuthor(e) {
     e.preventDefault
@@ -17,15 +18,18 @@ class AddBook extends React.Component {
   }
 
   handleTextChange(e) {
-    e.preventDefault
     let key = e.target.className
     this.setState({[key]: e.target.value})
+  }
+
+  handleSubmit(e) {
+    e.preventDefault()
   }
 
   render() {
     return(
       <div>
-        <form>
+        <form onSubmit={this.handleSubmit} >
 
           <div className="field">
             <label>Book name:  </label>
