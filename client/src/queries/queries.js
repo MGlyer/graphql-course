@@ -10,7 +10,16 @@ const getBookQuery = gql`
   }
 `
 
+const getAuthorQuery = gql`
+  {
+    authors{
+      name
+    }
+  }
+`
+
 
 module.exports = {
-  getBookQuery
+  getBookQuery,
+  getAuthorQuery
 }

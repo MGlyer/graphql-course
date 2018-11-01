@@ -6,6 +6,7 @@ import { ApolloProvider } from 'react-apollo'
 //components
 import BookList from './components/BookList.jsx'
 import AuthorList from './components/AuthorList.jsx'
+import AddBook from './components/AddBook.jsx'
 
 //apollo setup
 const courseClient = new ApolloClient({
@@ -28,6 +29,10 @@ class App extends React.Component {
                 </div>
                 <div className="authorList">
                   <AuthorList />
+                </div>
+
+                <div className="addBook">
+                  <AddBook />
                 </div>
             </div>
           </ApolloProvider>
