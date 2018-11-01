@@ -20,7 +20,7 @@ class App extends React.Component {
 
     render() {
         return(
-          <ApolloProvider client={'courseClient'}>
+          <ApolloProvider client={courseClient}>
             <div>
                 <h1 className="title">GraphQL Course: Reading List</h1>
                 <div className="bookList">

@@ -1,5 +1,6 @@
 import React from 'react'
-import { gql } from 'apollo-boost'
+import { getBookQuery } from './../queries/queries.js'
+import { graphql } from 'react-apollo'
 
 class BookList extends React.Component {
   state = {
@@ -17,4 +18,4 @@ class BookList extends React.Component {
   }
 }
 
-export default BookList
+export default graphql(getBookQuery)(BookList)
