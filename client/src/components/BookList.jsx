@@ -1,4 +1,5 @@
 import React from 'react'
+import { gql } from 'apollo-boost'
 
 class BookList extends React.Component {
   state = {
