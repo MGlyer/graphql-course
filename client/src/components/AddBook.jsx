@@ -46,7 +46,7 @@ class AddBook extends React.Component {
               :
               this.props.data.authors.map((author) => {
                 return(
-                  <option value={author.name}>{author.name}</option>
+                  <option value={author.name} key= {author.id}>{author.name}</option>
                 )
               })}
               

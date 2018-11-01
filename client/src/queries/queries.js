@@ -14,6 +14,7 @@ const getAuthorQuery = gql`
   {
     authors{
       name
+      id
     }
   }
 `
