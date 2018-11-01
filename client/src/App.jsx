@@ -1,7 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import ApolloClient from 'apollo-boost'
+import { ApolloProvider } from 'react-apollo'
+
+//components
 import BookList from './components/BookList.jsx'
 import AuthorList from './components/AuthorList.jsx'
+
+//apollo setup
+const courseClient = new ApolloClient({
+  uri: 'http://localhost:8084/graphql'
+})
+
 
 class App extends React.Component {
     state = {
@@ -10,6 +20,7 @@ class App extends React.Component {
 
     render() {
         return(
+          <ApolloProvider client={'courseClient'}>
             <div>
                 <h1 className="title">GraphQL Course: Reading List</h1>
                 <div className="bookList">
@@ -19,6 +30,7 @@ class App extends React.Component {
                   <AuthorList />
                 </div>
             </div>
+          </ApolloProvider>
         )
     }
 }
