@@ -45,10 +45,10 @@ class AddBook extends React.Component {
             <label>Author:  </label>
             <select onChange={this.changeAuthor}>
               <option>Select Author</option>
-              {this.props.data.loading ?
+              {this.props.getAuthorQuery.loading ?
               <option>loading authors...</option>
               :
-              this.props.data.authors.map((author) => {
+              this.props.getAuthorQuery.authors.map((author) => {
                 return(
                   <option value={author.name} key= {author.id}>{author.name}</option>
                 )
