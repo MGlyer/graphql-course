@@ -1,6 +1,6 @@
 import React from 'react'
-import { getAuthorQuery } from './../queries/queries.js'
-import { graphql } from 'react-apollo'
+import { getAuthorQuery, addBookMutation } from './../queries/queries.js'
+import { graphql, compose } from 'react-apollo'
 
 class AddBook extends React.Component {
   state = {
@@ -64,4 +64,7 @@ class AddBook extends React.Component {
   }
 }
 
-export default graphql(getAuthorQuery)(AddBook)
+export default compose(
+  graphql(getAuthorQuery, {name: "getAuthorQuery"}),
+  graphql(addBookMutation, {name: "addBookMutation"})
+)(AddBook)
