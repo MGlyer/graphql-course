@@ -1,5 +1,5 @@
 import React from 'react'
-import { getAuthorQuery, addBookMutation } from './../queries/queries.js'
+import { getAuthorQuery, addBookMutation, getBookQuery } from './../queries/queries.js'
 import { graphql, compose } from 'react-apollo'
 
 class AddBook extends React.Component {
@@ -25,7 +25,12 @@ class AddBook extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     let params = {name: this.state.bookName, genre: this.state.genreName, author: this.state.selectedAuthor}
-    this.props.addBookMutation({variables: params})
+    this.props.addBookMutation({
+      variables: params
+    }, 
+    refetchQueries: [
+      {query: getBookQuery}
+    ])
   }
 
   render() {
