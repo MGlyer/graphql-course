@@ -26,11 +26,9 @@ class AddBook extends React.Component {
     e.preventDefault()
     let params = {name: this.state.bookName, genre: this.state.genreName, author: this.state.selectedAuthor}
     this.props.addBookMutation({
-      variables: params
-    }, 
-    refetchQueries: [
-      {query: getBookQuery}
-    ])
+      variables: params, 
+      refetchQueries: [{query: getBookQuery}]
+    })
   }
 
   render() {
