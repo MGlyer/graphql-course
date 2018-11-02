@@ -96,7 +96,7 @@ const Mutation = new GraphQLObjectType({
       args: {
         name: {type: GraphQLNonNull(GraphQLString)},
         genre: {type: GraphQLNonNull(GraphQLString)},
-        authorName: {type: GraphQLNonNull(GraphQLID)}
+        authorName: {type: GraphQLNonNull(GraphQLString)}
       },
       resolve(parent, args) {
         Author.findOne({name: args.authorName}, (err, docs) => {

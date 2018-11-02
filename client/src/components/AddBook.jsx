@@ -24,12 +24,14 @@ class AddBook extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
+    let params = {name: this.state.bookName, genre: this.state.genreName, author: this.state.selectedAuthor}
+    this.props.addBookMutation({variables: params})
   }
 
   render() {
     return(
       <div>
-        <form onSubmit={this.handleSubmit} >
+        <form  >
 
           <div className="field">
             <label>Book name:  </label>
@@ -58,7 +60,7 @@ class AddBook extends React.Component {
           </div>
         </form>
 
-        <button>+</button>
+        <button onClick={this.handleSubmit} >+</button>
       </div>
     )
   }
