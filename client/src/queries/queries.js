@@ -1,9 +1,8 @@
 const { gql } = require('apollo-boost')
-const getBookQuery = gql`
+const getBooksQuery = gql`
 {
   books{
     name
-    genre
     id
   }
 }
@@ -27,9 +26,29 @@ const addBookMutation = gql`
   }
 `
 
+const getBookQuery = gql`
+    query($id: ID) {
+      book(id: $id){
+        id
+        name
+        genre
+        author{
+          id
+          name
+          age
+          book{
+            name
+            id
+          }
+        }
+      }
+    }
+`
+
 
 module.exports = {
-  getBookQuery,
+  getBooksQuery,
   getAuthorQuery,
-  addBookMutation
+  addBookMutation,
+  getBookQuery
 }
