@@ -23,10 +23,12 @@ class AddBook extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault()
-    let params = {name: this.state.bookName, genre: this.state.genreName, author: this.state.selectedAuthor}
     this.props.addBookMutation({
-      variables: params, 
+      variables: {
+        name: this.state.bookName,
+        genre: this.state.genreName,
+        author: this.state.selectedAuthor
+      }, 
       refetchQueries: [{query: getBookQuery}]
     })
   }
@@ -71,5 +73,5 @@ class AddBook extends React.Component {
 
 export default compose(
   graphql(getAuthorQuery, {name: "getAuthorQuery"}),
-  graphql(addBookMutation, {name: "addBookMutation"})
+  graphql(addBookMutation, {name: "addBookMutation" /*, options: {refetchQueries: [{query: getBookQuery}] } */ })
 )(AddBook)

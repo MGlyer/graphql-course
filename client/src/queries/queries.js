@@ -1,13 +1,12 @@
 const { gql } = require('apollo-boost')
-
 const getBookQuery = gql`
-  {
-    books{
-      name
-      genre
-      id
-    }
+{
+  books{
+    name
+    genre
+    id
   }
+}
 `
 
 const getAuthorQuery = gql`
